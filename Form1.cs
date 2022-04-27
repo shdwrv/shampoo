@@ -24,7 +24,7 @@ namespace shampoo
             simpleSound.Play();
             timer1 = new Timer();
             timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Interval = 10000;
+            timer1.Interval = 2500;
             timer1.Start();
         }
 
