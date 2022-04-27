@@ -12,7 +12,17 @@ namespace shampoo
     {
         SoundPlayer simpleSound = new SoundPlayer(Path.GetTempPath() + "\\shampoo.wav");
         Process[] pname = Process.GetProcessesByName("taskmgr");
+
         int x = 1;
+        int cycle = 0;
+
+        int tmax = 0;
+        int lmax = 0;
+        int t = 0;
+        int l = 0;
+
+        string screenWidth = Screen.PrimaryScreen.Bounds.Width.ToString();
+        string screenHeight = Screen.PrimaryScreen.Bounds.Height.ToString();
 
         public Form1()
         {
@@ -33,10 +43,16 @@ namespace shampoo
             InitializeComponent();
             this.KeyPreview = true;
             simpleSound.Play();
+
             timer1 = new Timer();
             timer1.Tick += new EventHandler(timer1_Tick);
             timer1.Interval = 2500;
             timer1.Start();
+
+            timer2 = new Timer();
+            timer2.Tick += new EventHandler(timer2_Tick);
+            timer2.Interval = 250;
+            timer2.Start();
         }
 
         void timer1_Tick(object sender, EventArgs e)
@@ -53,8 +69,51 @@ namespace shampoo
             else
                 Process.Start(AppDomain.CurrentDomain.BaseDirectory + "\\shampoo.exe");
 
+
         }
 
+        void timer2_Tick(object sender, EventArgs e)
+        {
+            cycle = cycle + 1;
+            Random randt = new Random();
+            Random randl = new Random();
 
+            tmax = Convert.ToInt32(screenHeight);
+            lmax = Convert.ToInt32(screenWidth);
+
+            int randtt = randt.Next(0, tmax - 300);
+            int randll = randl.Next(0, lmax - 400);
+
+            if (cycle == 1)
+            {
+                t = 1;
+                l = 1;
+                MessageBox.Show(tmax.ToString() + lmax.ToString()) ;
+            }
+            do
+            {
+                if(t < tmax - 75)
+                {
+                    t = t + 10;
+                    this.Top = t;
+                }
+                if(l < lmax - 75)
+                {
+                    l = l + 10;
+                    this.Left = l;
+                }
+                if(t > randtt)
+                {
+                    t = t - 10;
+                    this.Top = t;
+                }
+                if(l > randll)
+                {
+                    l = l - 10;
+                    this.Left = l;
+                }
+            }
+            while (x == 1);
+        }
     }
 }
