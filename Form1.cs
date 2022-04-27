@@ -20,6 +20,8 @@ namespace shampoo
         int lmax = 0;
         int t = 0;
         int l = 0;
+        int randtt = 0;
+        int randll = 0;
 
         string screenWidth = Screen.PrimaryScreen.Bounds.Width.ToString();
         string screenHeight = Screen.PrimaryScreen.Bounds.Height.ToString();
@@ -51,7 +53,7 @@ namespace shampoo
 
             timer2 = new Timer();
             timer2.Tick += new EventHandler(timer2_Tick);
-            timer2.Interval = 250;
+            timer2.Interval = 5;
             timer2.Start();
         }
 
@@ -81,11 +83,11 @@ namespace shampoo
             tmax = Convert.ToInt32(screenHeight);
             lmax = Convert.ToInt32(screenWidth);
 
-            int randtt = randt.Next(0, tmax - 300);
-            int randll = randl.Next(0, lmax - 400);
-
             if (cycle == 1)
             {
+                randtt = randt.Next(0, tmax - 300);
+                randll = randl.Next(0, lmax - 400);
+
                 t = 1;
                 l = 1;
             }
@@ -111,8 +113,18 @@ namespace shampoo
                     l = l - 10;
                     this.Left = l;
                 }
+                break;
             }
             while (x == 1);
+        }
+
+        void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            string keydata = e.KeyData.ToString();
+            if (keydata.Contains("Alt") && keydata.Contains("P"))
+            {
+                Application.Exit();
+            }
         }
     }
 }
