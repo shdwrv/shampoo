@@ -88,7 +88,6 @@ namespace shampoo
             {
                 t = 1;
                 l = 1;
-                MessageBox.Show(tmax.ToString() + lmax.ToString()) ;
             }
             do
             {
