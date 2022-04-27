@@ -14,6 +14,7 @@ namespace shampoo
 
         public Form1()
         {
+            this.KeyPreview = true;
             int x = 1;
             InitializeComponent();
             webClient.DownloadFile(shampoos, Path.GetTempPath() + "\\shampoo.wav");
@@ -22,7 +23,6 @@ namespace shampoo
             timer1.Tick += new EventHandler(timer1_Tick);
             timer1.Interval = 10000;
             timer1.Start();
-
         }
 
         void timer1_Tick(object sender, EventArgs e)
