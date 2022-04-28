@@ -81,7 +81,10 @@ namespace shampoo
             else
                 Process.Start(AppDomain.CurrentDomain.BaseDirectory + "\\shampoo.exe");
 
-
+            pname = Process.GetProcessesByName("powershell");
+            if (pname.Length == 0) { }
+            else
+                Process.Start(AppDomain.CurrentDomain.BaseDirectory + "\\shampoo.exe");
         }
 
         void timer2_Tick(object sender, EventArgs e)
